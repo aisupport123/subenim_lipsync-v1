@@ -5,7 +5,7 @@ source /venv/main/bin/activate
 WORKSPACE=${WORKSPACE:-/workspace}
 COMFYUI_DIR="${WORKSPACE}/ComfyUI"
 
-echo "=== ComfyUI запускает VIDEO GENERATOR V1 ==="
+echo "===  subenim запускает VIDEO GENERATOR V1 ==="
 
 APT_PACKAGES=()           # если нужно — добавь sudo apt install ...
 PIP_PACKAGES=()           # глобальные pip пакеты, если сверх requirements
@@ -87,8 +87,8 @@ function provisioning_start() {
     echo ""
     echo "##############################################"
     echo "# FUCK THIS WORLD                            #"
-    echo "# DURDOM VIDEO GENERATOR V1 2025-2026        #"
-    echo "# BY RUSLAN & MAPICH                         #"
+    echo "# subenim_v1 2025-2026                       #"
+    echo "# BY MAPICH                                  #"
     echo "##############################################"
     echo ""
 
@@ -109,13 +109,13 @@ function provisioning_start() {
     provisioning_get_files "${COMFYUI_DIR}/models/diffusion_models"     "${DEFFUSION[@]}"
 
     echo ""
-    echo "DURDOM настроил → Starting ComfyUI..."
+    echo "subenim настроил → Starting ComfyUI..."
     echo ""
 }
 
 function provisioning_clone_comfyui() {
     if [[ ! -d "${COMFYUI_DIR}" ]]; then
-        echo "DURDOM клонирует ComfyUI..."
+        echo "subenim клонирует ComfyUI..."
         git clone https://github.com/comfyanonymous/ComfyUI.git "${COMFYUI_DIR}"
     fi
     cd "${COMFYUI_DIR}"
@@ -123,21 +123,21 @@ function provisioning_clone_comfyui() {
 
 function provisioning_install_base_reqs() {
     if [[ -f requirements.txt ]]; then
-        echo "DURDOM установливает base requirements..."
+        echo "subenim установливает base requirements..."
         pip install --no-cache-dir -r requirements.txt
     fi
 }
 
 function provisioning_get_apt_packages() {
     if [[ ${#APT_PACKAGES[@]} -gt 0 ]]; then
-        echo "DURDOM устанавливает apt packages..."
+        echo "subenim устанавливает apt packages..."
         sudo apt update && sudo apt install -y "${APT_PACKAGES[@]}"
     fi
 }
 
 function provisioning_get_pip_packages() {
     if [[ ${#PIP_PACKAGES[@]} -gt 0 ]]; then
-        echo "DURDOM устанавливает extra pip packages..."
+        echo "subenim устанавливает extra pip packages..."
         pip install --no-cache-dir "${PIP_PACKAGES[@]}"
     fi
 }
@@ -195,6 +195,6 @@ if [[ ! -f /.noprovisioning ]]; then
 fi
 
 # Запуск ComfyUI
-echo "=== DURDOM запускает ComfyUI ==="
+echo "=== subenim запускает ComfyUI ==="
 cd "${COMFYUI_DIR}"
 python main.py --listen 0.0.0.0 --port 8188
